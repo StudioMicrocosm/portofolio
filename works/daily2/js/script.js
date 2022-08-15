@@ -59,7 +59,7 @@ $(function () {
   $('#contact-form').submit(function (event) {
     var formData = $('#contact-form').serialize();
     $.ajax({
-      url: "https://docs.google.com/forms/u/0/d/e/1FAIpQLSfW9C7TAMS_Sf_AkBDcRjbfwAul8Dgg7BLh8N1ivOvWAOlssQ/formResponse", 
+      url: "https://docs.google.com/forms/d/e/1FAIpQLSfRYV9ppO7d7KlkRJaxOx_eKjvP-g1N6OoriIu0pSFCH_MOZQ/formResponse", 
       data: formData,
       type: "POST",
       dataType: "xml",
@@ -77,3 +77,17 @@ $(function () {
   });
 
 });
+
+$(function(){
+  $(".input-mandatory, .input-checkbox").change(function(){
+      let active = true;
+      $(".input-mandatory").each((i, elem) => {
+          if(!$(elem).val()){
+            active = false;
+          } 
+      })
+      if(!$(".input-checkbox").prop('checked')) active = false;
+      if(active) $(".button-submit").prop('disabled', false);
+      else $(".button-submit").prop('disabled', true);
+  })
+})
